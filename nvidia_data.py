@@ -5,7 +5,6 @@ from jtop import jtop
 import json
 import datetime
 import os
-import threading
 import re
 
 def myconverter(o):
