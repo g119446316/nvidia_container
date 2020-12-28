@@ -3,7 +3,7 @@ import re
 import os
 import serial
 
-port = '/dev/ttyACM0' # note I'm using Mac OS-X
+port = '/dev/ttyUSB0' # note I'm using Mac OS-X
 ard = serial.Serial(port,115200,timeout=3,
            parity=serial.PARITY_NONE,
            bytesize=serial.EIGHTBITS,
