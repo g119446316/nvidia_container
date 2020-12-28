@@ -8,7 +8,7 @@ import os
 import threading
 import re
 
-port = '/dev/ttyACM0'
+port = '/dev/ttyUSB0'
 ard = serial.Serial(port,115200,timeout=3,
            parity=serial.PARITY_NONE,
            bytesize=serial.EIGHTBITS,
