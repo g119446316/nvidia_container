@@ -2,6 +2,7 @@
 import re
 import os
 import serial
+import time
 
 port = '/dev/ttyUSB0' # note I'm using Mac OS-X
 ard = serial.Serial(port,115200,timeout=3,
