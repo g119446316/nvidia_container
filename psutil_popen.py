@@ -1,12 +1,20 @@
-
 import psutil
 import time
-import subprocess 
+import subprocess
 import os
+import serial
 
-total_info = {}
+port = '/dev/ttyUSB0'
+ard = serial.Serial(port,115200,timeout=3,
+           parity=serial.PARITY_NONE,
+           bytesize=serial.EIGHTBITS,
+           stopbits=serial.STOPBITS_ONE)
+time.sleep(2)
 
-while True:
+
+def get_total_info():
+ while True:
+  total_info = {}
   #cpu
   cpu_usage = psutil.cpu_percent(interval=1,percpu=True)
   cpu_freq = psutil.cpu_freq()
@@ -54,4 +62,16 @@ while True:
   print(total_info)
 
   time.sleep(5)
+  return total_info
 
+
+def send_DMS():
+  while True:
+   if ard.isOpen():
+      total_info = get_total_info()
+      total_info = "[" + str(total_info) +"]"
+      ard.write(total_info.encode('ascii'))
+      ard.flush()
+
+if __name__ == '__main__' :
+     send_DMS()
