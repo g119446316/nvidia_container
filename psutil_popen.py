@@ -12,7 +12,7 @@ while True:
   cpu_freq = psutil.cpu_freq()
 
   for i in range(len(cpu_usage)):
-    usage = { "cpu"+str(i+1) : cpu_usage[i] }
+    usage = { "CPU"+str(i+1) : cpu_usage[i] }
     total_info.update(usage)
 
   total_info.update({"cpu_freq" : cpu_freq[0]})
