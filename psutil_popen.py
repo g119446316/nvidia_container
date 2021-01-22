@@ -64,14 +64,17 @@ def get_total_info():
   time.sleep(5)
   return total_info
 
-
 def send_DMS():
   while True:
    if ard.isOpen():
-      total_info = get_total_info()
+      #total_info = str(get_total_info()).replace(" ","")
+      total_info = json.dumps(get_total_info())
       total_info = "[" + str(total_info) +"]"
+
+      print(total_info.encode('ascii'))
       ard.write(total_info.encode('ascii'))
       ard.flush()
 
 if __name__ == '__main__' :
      send_DMS()
+
