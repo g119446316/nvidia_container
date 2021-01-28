@@ -3,6 +3,7 @@ import time
 import subprocess
 import os
 import serial
+import json
 
 port = '/dev/ttyUSB0'
 ard = serial.Serial(port,115200,timeout=3,
