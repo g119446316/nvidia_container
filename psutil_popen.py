@@ -59,6 +59,7 @@ def get_total_info():
   #disk
   disk =  psutil.disk_usage('/')
   total_info.update({"disk" : disk[3] })
+  total_info = {k.replace("-","_"): v for k,v in total_info.items()}
 
   print(total_info)
 
