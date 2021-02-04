@@ -4,6 +4,9 @@ import subprocess
 import os
 import serial
 import json
+from datetime import datetime
+import pytz
+
 
 port = '/dev/ttyUSB0'
 ard = serial.Serial(port,115200,timeout=3,
@@ -60,6 +63,11 @@ def get_total_info():
   disk =  psutil.disk_usage('/')
   total_info.update({"disk" : disk[3] })
   total_info = {k.replace("-","_"): v for k,v in total_info.items()}
+
+  #datetime
+  asia = pytz.timezone('Asia/Taipei')
+  cur_time = datetime.now(asia).strftime("%Y-%d-%m-%H:%M:%S")
+  total_info.update({"time" : str(cur_time) })
 
   print(total_info)
 
