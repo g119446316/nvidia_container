@@ -40,7 +40,7 @@ def get_total_info():
   #gpu_usage
   gpu = subprocess.Popen(['cat', '/sys/devices/gpu.0/load'],stdout=subprocess.PIPE)
   gpu.wait()
-  total_info.update({"gpu" : float(gpu.stdout.read())/10 })
+  total_info.update({"GPU" : float(gpu.stdout.read())/10 })
 
   #fan_speed
   fan = subprocess.Popen(['cat', '/sys/devices/pwm-fan/target_pwm'],stdout=subprocess.PIPE)
