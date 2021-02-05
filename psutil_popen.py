@@ -78,7 +78,7 @@ def send_DMS():
   while True:
    if ard.isOpen():
       #total_info = str(get_total_info()).replace(" ","")
-      total_info = json.dumps(get_total_info())
+      total_info = json.dumps(get_total_info()).replace(" ","")
       total_info = "[" + str(total_info) +"]"
 
       print(total_info.encode('ascii'))
