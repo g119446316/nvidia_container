@@ -24,7 +24,7 @@ def readline():
        print(incoming)
        ard.flush()
        if  "Received" in incoming :
-         HOST = socket.gethostbyname('ef8349423a46')
+         HOST = socket.gethostbyname('control')
          PORT = 8000
          client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
          client.connect((HOST, PORT))
