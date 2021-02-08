@@ -10,7 +10,7 @@ server.listen(1)
 
 while True:
     conn, addr = server.accept()
-    clientMessage = str(conn.recv(1024).encode('utf-8'))
+    clientMessage = str(conn.recv(1024).decode('utf-8'))
 
     print('Client message is:', clientMessage)
     
