@@ -13,7 +13,6 @@ ard = serial.Serial(port,115200,timeout=3,
            parity=serial.PARITY_NONE,
            bytesize=serial.EIGHTBITS,
            stopbits=serial.STOPBITS_ONE)
-time.sleep(2)
 
 
 def get_total_info():
