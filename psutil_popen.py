@@ -6,6 +6,9 @@ import serial
 import json
 from datetime import datetime
 import pytz
+import base64
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad 
 
 
 port = '/dev/ttyUSB0'
@@ -77,12 +80,21 @@ def send_DMS():
   while True:
    if ard.isOpen():
       #total_info = str(get_total_info()).replace(" ","")
+           #total_info = str(get_total_info()).replace(" ","")
       total_info = json.dumps(get_total_info()).replace(" ","")
-      total_info = "[" + str(total_info) +"]"
-
-      print(total_info.encode('ascii'))
-      ard.write(total_info.encode('ascii'))
+      total_info = total_info.encode('utf-8')
+      total_info = pad(total_info,AES.block_size)
+      #total_info = base64.b64encode(total_info)
+      #total_info = pad(total_info,AES.block_size)
+      print(len(total_info))
+      a = "["
+      b = "]"
+      total_info = a.encode('utf-8') + total_info +b.encode('utf-8')
+      #total_info = base64.b64encode(total_info.encode('utf-8'))
+      print(total_info)
+      ard.write(total_info)
       ard.flush()
+
 
 if __name__ == '__main__' :
      send_DMS()
