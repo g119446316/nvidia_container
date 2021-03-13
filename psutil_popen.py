@@ -83,7 +83,7 @@ def send_DMS():
            #total_info = str(get_total_info()).replace(" ","")
       total_info = json.dumps(get_total_info()).replace(" ","")
       total_info = total_info.encode('utf-8')
-      #total_info = pad(total_info,AES.block_size)
+      total_info = pad(total_info,AES.block_size)
       #total_info = base64.b64encode(total_info)
       #total_info = pad(total_info,AES.block_size)
       print(len(total_info))
