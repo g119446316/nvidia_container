@@ -1,3 +1,4 @@
+import urllib.request
 import psutil
 import time
 import subprocess
@@ -71,8 +72,30 @@ def get_total_info():
   cur_time = datetime.now(asia).strftime("%Y-%d-%m-%H:%M:%S")
   total_info.update({"time" : str(cur_time) })
 
-  print(total_info)
+  #network
+  network_eth = os.popen('cat /sys/class/net/eth*/carrier')
+  network_eth = network_eth.readlines()
+  network_eth = int(network_eth[0])
+  network_wlan = os.popen('cat /sys/class/net/wlan*/carrier')
+  network_wlan = network_wlan.readlines()
+  network_wlan = int(network_wlan[0])
 
+  if network_eth == 1 :
+    print("come1")
+    try:
+      response = urllib.request.urlopen('http://google.com',timeout=3)
+      status = response.getcode()
+      if status == 200:
+         print("come2")
+         total_info.update({"net" : "T" })
+      else:
+         total_info.update({"net" : "F-ping" })
+    except:
+          pass
+  else:
+     total_info.update({"net" : "F-cable" })
+
+  print(total_info)
   time.sleep(5)
   return total_info
 
